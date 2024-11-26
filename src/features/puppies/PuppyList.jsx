@@ -7,15 +7,14 @@ import { useGetPuppiesQuery } from "./puppySlice";
 export default function PuppyList({ setSelectedPuppyId }) {
   // TODO: Get data from getPuppies query
 
-  const response = useGetPuppiesQuery();
-  console.log(response);
-  console.log(useGetPuppiesQuery());
+  const {data: puppies, isLoading} = useGetPuppiesQuery();
+  console.log(puppies)
   return (
     <article>
       <h2>Roster</h2>
       <ul className="puppies">
         {isLoading && <li>Loading puppies...</li>}
-        {puppies.map((p) => (
+        {puppies?.data?.players.map((p) => (
           <li key={p.id}>
             <h3>
               {p.name} #{p.id}
